@@ -1,0 +1,60 @@
+{
+  "title": "User Registration Form",
+  "fields": [
+    {
+      "name": "fullName",
+      "label": "Full Name",
+      "type": "text",
+      "required": true,
+      "minLength": 3,
+      "maxLength": 50,
+      "placeholder": "Enter your full name"
+    },
+    {
+      "name": "age",
+      "label": "Age",
+      "type": "number",
+      "required": true,
+      "min": 18,
+      "max": 60,
+      "placeholder": "Enter your age"
+    },
+    {
+      "name": "gender",
+      "label": "Gender",
+      "type": "select",
+      "required": true,
+      "options": ["Male", "Female", "Other"]
+    },
+    {
+      "name": "hobbies",
+      "label": "Hobbies",
+      "type": "multi-select",
+      "required": false,
+      "options": ["Music", "Sports", "Reading", "Travel", "Gaming"],
+      "minSelected": 1,
+      "maxSelected": 3
+    },
+    {
+      "name": "dob",
+      "label": "Date of Birth",
+      "type": "date",
+      "required": true,
+      "minDate": "1990-01-01"
+    },
+    {
+      "name": "bio",
+      "label": "Bio",
+      "type": "textarea",
+      "required": false,
+      "maxLength": 200
+    },
+    {
+      "name": "notifications",
+      "label": "Enable Notifications",
+      "type": "switch",
+      "required": false
+    }
+  ]
+}
+
