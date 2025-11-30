@@ -70,4 +70,16 @@
     "bio" : "dddd",
     "notifications" : false
   }
+}, {
+  "id" : 1764487603942,
+  "createdAt" : "30-11-2025",
+  "data" : {
+    "fullName" : "Deppa",
+    "age" : 29,
+    "gender" : "Female",
+    "hobbies" : [ "Gaming", "Travel" ],
+    "dob" : "2025-11-14",
+    "bio" : "",
+    "notifications" : true
+  }
 } ]

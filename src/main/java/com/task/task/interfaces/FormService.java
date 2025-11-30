@@ -17,7 +17,7 @@ public interface FormService {
    public Mono<Object> getFormSchema();
 
     @PostMapping("/submissions")
-   public Mono<String> submitForm(@RequestBody Map<String, Object> data);
+   public Mono<Map<String, Object>> submitForm(@RequestBody Map<String, Object> data);
 
     @GetMapping("/submission")
    public Flux<FormSubmission> getAllSubmissions();

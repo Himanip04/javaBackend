@@ -45,26 +45,39 @@ public class FormServiceImpl implements FormService {
     }
 
 @Override
-public Mono<String> submitForm(Map<String, Object> data) {
+public Mono<Map<String, Object>> submitForm(Map<String, Object> data) {
+
     return getFormSchema()
-        .flatMap(schema -> {
-            return validationService.validate(data, schema)
+        .flatMap(schema ->
+            validationService.validate(data, schema)
                 .flatMap(errors -> {
                     if (!errors.isEmpty()) {
                         return Mono.error(new ResponseStatusException(
-                            HttpStatus.BAD_REQUEST,
-                            objectToJson(errors)
+                                HttpStatus.BAD_REQUEST,
+                                objectToJson(Map.of(
+                                        "success", false,
+                                        "errors", errors
+                                ))
                         ));
                     }
                     return Mono.just(schema);
-                });
-        })
+                })
+        )
         .flatMap(schema -> {
             FormSubmission submission = formMapper.mapToSubmission(data);
+
             return formRepository.save(submission)
-                    .then(Mono.just("Saved"));
+                .then(Mono.just(
+                        Map.of(
+                                "success", true,
+                                "id", submission.getId(),
+                                "createdAt", submission.getCreatedAt(),
+                                "status", 201
+                        )
+                ));
         });
 }
+
 
 
 
