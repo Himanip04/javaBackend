@@ -21,4 +21,7 @@ public interface FormService {
 
     @GetMapping("/submissions")
    public Flux<FormSubmission> getAllSubmissions();
+
+   @GetMapping("/submissions/paginated")
+public Mono<Object> getPaginatedSubmissions(@RequestParam int page,@RequestParam int limit,@RequestParam String sortBy,@RequestParam String sortOrder);
 }
