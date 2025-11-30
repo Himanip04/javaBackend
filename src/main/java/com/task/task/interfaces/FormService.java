@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/form")
+@RequestMapping("/api")
 public interface FormService {
 
     @GetMapping("/schema")
    public Mono<Object> getFormSchema();
 
-    @PostMapping("/submit")
+    @PostMapping("/submissions")
    public Mono<String> submitForm(@RequestBody Map<String, Object> data);
 
-    @GetMapping("/submissions")
+    @GetMapping("/submission")
    public Flux<FormSubmission> getAllSubmissions();
 
    @GetMapping("/submissions/paginated")
