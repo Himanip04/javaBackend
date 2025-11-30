@@ -1,3 +1,4 @@
+
 package com.task.task.config;
 
 import org.springframework.context.annotation.Bean;
@@ -6,24 +7,18 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
-import java.util.Arrays;
-
 @Configuration
-public class CorsConfig {
+public class CorsGlobalConfig {
 
     @Bean
-    public CorsWebFilter corsFilter() {
+    public CorsWebFilter corsWebFilter() {
+
         CorsConfiguration config = new CorsConfiguration();
-
-        config.setAllowCredentials(true);
-        config.setAllowedOrigins(Arrays.asList(
-                "http://localhost:5173",
-                "https://dynamicformtask.netlify.app"
-        ));
-
-        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(Arrays.asList("*"));
-        config.setExposedHeaders(Arrays.asList("*"));
+        config.addAllowedOrigin("https://dynamicformtask.netlify.app");  // frontend
+        config.addAllowedOrigin("http://localhost:5173");                // local dev
+        config.addAllowedMethod("*");
+        config.addAllowedHeader("*");
+        config.setAllowCredentials(false);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
@@ -31,4 +26,3 @@ public class CorsConfig {
         return new CorsWebFilter(source);
     }
 }
-
